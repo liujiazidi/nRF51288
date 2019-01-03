@@ -1,0 +1,16 @@
+.\_build\twi_hw_master.o: ..\..\..\twi_hw_master.c
+.\_build\twi_hw_master.o: ..\..\..\twi_master.h
+.\_build\twi_hw_master.o: D:\App\Keli4\ARM\ARMCC\bin\..\include\stdbool.h
+.\_build\twi_hw_master.o: D:\App\Keli4\ARM\ARMCC\bin\..\include\stdint.h
+.\_build\twi_hw_master.o: ..\..\..\twi_master_config.h
+.\_build\twi_hw_master.o: ..\..\..\..\..\..\components\device\nrf.h
+.\_build\twi_hw_master.o: ..\..\..\..\..\..\components\device\nrf51.h
+.\_build\twi_hw_master.o: D:\App\Keli4\ARM\CMSIS\Include\core_cm0.h
+.\_build\twi_hw_master.o: D:\App\Keli4\ARM\CMSIS\Include\core_cmInstr.h
+.\_build\twi_hw_master.o: D:\App\Keli4\ARM\CMSIS\Include\core_cmFunc.h
+.\_build\twi_hw_master.o: ..\..\..\..\..\..\components\toolchain\system_nrf51.h
+.\_build\twi_hw_master.o: ..\..\..\..\..\..\components\device\nrf51_bitfields.h
+.\_build\twi_hw_master.o: ..\..\..\..\..\..\components\device\nrf51_deprecated.h
+.\_build\twi_hw_master.o: ..\..\..\..\..\..\components\device\compiler_abstraction.h
+.\_build\twi_hw_master.o: ..\..\..\..\..\..\components\drivers_nrf\delay\nrf_delay.h
+.\_build\twi_hw_master.o: ..\..\..\..\..\..\components\drivers_nrf\hal\nrf_gpio.h
