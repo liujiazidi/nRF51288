@@ -96,6 +96,9 @@ bool twi_master_transfer(uint8_t address, uint8_t *data, uint8_t data_length, bo
 /**
  *@}
  **/
+bool haha_twi_write(uint8_t dev_addr, uint8_t reg, uint8_t len, uint8_t * data);//lx
+bool haha_twi_read(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf);
+
 
 /*lint --flb "Leave library region" */
 #endif //TWI_MASTER_H

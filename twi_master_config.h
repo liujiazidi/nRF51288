@@ -12,14 +12,11 @@
 #ifndef TWI_MASTER_CONFIG
 #define TWI_MASTER_CONFIG
 
-#define TWI_MASTER_CONFIG_CLOCK_PIN_NUMBER (24U)
-#define TWI_MASTER_CONFIG_DATA_PIN_NUMBER (25U)
+#define TWI_MASTER_CONFIG_CLOCK_PIN_NUMBER (10U)
+#define TWI_MASTER_CONFIG_DATA_PIN_NUMBER (9U)
 
-#define GSENSOR_INT_PIN_NUMBER             (10)  
-
-#define I2C_ADR(address)                   (unsigned char)(address << 1) 
+#define GSENSOR_INT_PIN_NUMBER             (5)   
 	
-#define GSENSOR_I2C_DEVICE_ADDRESS         I2C_ADR(0x4c)
-
+#define GSENSOR_I2C_DEVICE_ADDRESS         0x69
 
 #endif

@@ -51,3 +51,6 @@
 .\_build\main.o: ..\..\..\..\..\bsp\bsp_btn_ble.h
 .\_build\main.o: ..\..\..\twi_master.h
 .\_build\main.o: ..\..\..\twi_master_config.h
+.\_build\main.o: ..\arm4\mpu6050.h
+.\_build\main.o: ..\..\..\..\..\..\components\drivers_nrf\delay\nrf_delay.h
+.\_build\main.o: ..\..\..\app_scheduler.h

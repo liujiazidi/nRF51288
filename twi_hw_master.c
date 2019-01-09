@@ -301,4 +301,30 @@ bool twi_master_transfer(uint8_t   address,
     return transfer_succeeded;
 }
 
+//*******lx*******//
+bool haha_twi_write(uint8_t dev_addr, uint8_t reg, uint8_t len, uint8_t * data){
+	static uint8_t temp_buf[50];
+	temp_buf[0]=reg;
+	for(int i=1;i<=len;i++)	temp_buf[i]=data[i-1];
+	dev_addr =dev_addr<<1;
+	if (twi_master_transfer(dev_addr,temp_buf,len+1,TWI_ISSUE_STOP)){
+		return true;
+	}else {
+		return false;
+	}
+}
+
+
+bool haha_twi_read(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf){
+	static uint8_t temp_reg;
+	temp_reg=reg;
+	addr <<= 1;
+	twi_master_transfer(addr,&temp_reg,1,TWI_DONT_ISSUE_STOP);
+	if(twi_master_transfer(addr|TWI_READ_BIT,buf,len,TWI_ISSUE_STOP)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 /*lint --flb "Leave library region" */

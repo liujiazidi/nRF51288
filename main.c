@@ -37,9 +37,11 @@
 #include "app_util_platform.h"
 #include "bsp.h"
 #include "bsp_btn_ble.h"
-
 #include "twi_master.h"
 #include "twi_master_config.h"
+#include "mpu6050.h"
+#include "nrf_delay.h"
+#include "app_scheduler.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include the service_changed characteristic. If not enabled, the server's database cannot be changed for the lifetime of the device. */
 
@@ -132,17 +134,16 @@ static void gap_params_init(void)
 /**@snippet [Handling the data received over BLE] */
 static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
 {
-	  /******lx**/
-		nrf_gpio_pin_clear(19);		
-		
-		/*********/
+		nrf_gpio_pin_set(19);
+		nrf_delay_ms(1000);
+		nrf_gpio_pin_clear(19);
+		nrf_delay_ms(1000);
+		nrf_gpio_pin_set(19);
     for (uint32_t i = 0; i < length; i++)
     {
         while(app_uart_put(p_data[i]) != NRF_SUCCESS);
     }
     while(app_uart_put('\n') != NRF_SUCCESS);
-		
-		
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -357,18 +358,8 @@ static void ble_stack_init(void)
 void bsp_event_handler(bsp_event_t event)
 {
     uint32_t err_code;
-	  uint32_t       err_code1;
-		static uint8_t data_array[4]="123";
     switch (event)
     {
-				case BSP_EVENT_KEY_0:   //lx                    
-				case BSP_EVENT_KEY_1:	
-						err_code1 = ble_nus_string_send(&m_nus, data_array, 4);
-						if (err_code1 !=NRF_ERROR_INVALID_STATE)
-						{
-								APP_ERROR_CHECK(err_code1);
-						}
-						break;
         case BSP_EVENT_SLEEP:
             sleep_mode_enter();
             break;
@@ -544,20 +535,22 @@ int main(void)
     services_init();
     advertising_init();
     conn_params_init();
-    
+    twi_master_init();
+		nrf_delay_ms(100);
+		while(mpu6050_init()!= true){
+			//nrf_gpio_pin_set(19);
+		}
+
     printf("%s",start_string);
- 
-		nrf_gpio_cfg_output(19);
-		nrf_gpio_pin_set(19); 
-	//twi_master_init();
-	
+
     err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(err_code);
-    
+
     // Enter main loop.
     for (;;)
     {
-        power_manage(); 
+			  
+        power_manage();
     }
 }
 
